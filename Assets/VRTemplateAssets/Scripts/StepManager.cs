@@ -135,6 +135,19 @@ namespace Unity.VRTemplate
             new Question("Comment dit-on \"Goodbye\" en français?", new List<string>{"Au revoir", "Bonjour", "Bonne nuit"}, 0)
         };
 
+        private List<Question> canadaQuestions = new List<Question>
+{
+    new Question("What is Canada's national animal?", new List<string>{"Beaver", "Moose", "Penguin"}, 0),
+    new Question("What do Canadians say after every sentence?", new List<string>{"Eh", "Uh", "Oh"}, 0),
+    new Question("Which sport is considered Canada's national pastime?", new List<string>{"Hockey", "Curling", "Snowboarding"}, 0),
+    new Question("What is the iconic Canadian coffee shop?", new List<string>{"Tim Hortons", "Starbucks", "Dunkin' Donuts"}, 0),
+    new Question("What is a popular Canadian dish featuring fries, cheese curds, and gravy?", new List<string>{"Poutine", "Nachos", "Pizza"}, 0),
+    new Question("What is Canada's most famous mountainous national park?", new List<string>{"Banff", "Yellowstone", "Yosemite"}, 0),
+    new Question("What do Canadians use to apologize?", new List<string>{"Sorry", "Excuse Me", "Pardon"}, 0),
+    new Question("What iconic leaf is on the Canadian flag?", new List<string>{"Maple Leaf", "Oak Leaf", "Pine Leaf"}, 0)
+};
+
+
         private List<Question> frenchToEnglishQuestions = new List<Question>
         {
             new Question("What is \"baguette\" in English?", new List<string>{"Breadstick", "Wand", "French stick"}, 0),
@@ -247,7 +260,7 @@ namespace Unity.VRTemplate
             if (currentDropdown != null)
             {
                 currentDropdown.ClearOptions();
-                currentDropdown.AddOptions(new List<string> { "French", "Math", "Programming", "French to English", "Science" });
+                currentDropdown.AddOptions(new List<string> { "French", "Math", "Programming", "French #2", "Science", "Canadian Things" });
             }
 
             
@@ -369,6 +382,9 @@ namespace Unity.VRTemplate
                         break;
                     case 4:
                         questions = scienceQuestions;
+                        break;
+                    case 5:
+                        questions = canadaQuestions;
                         break;
                     default:
                         questions = (frenchQuestions);

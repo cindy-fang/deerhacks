@@ -10,6 +10,12 @@ BooLingo redefines the journey of learning by blending the thrill of horror with
 - **Real-Time Feedback**: Immediate responses to your answers with light-hearted threats or encouragement, ensuring learning is both effective and memorable.
 - **Unity & OpenXR**: Developed using Unity and the OpenXR SDK, BooLingo promises a cross-platform VR experience, supporting a wide range of VR devices.
 
+## Tech Stack
+
+- Unity: Primary platform for developing the VR game, providing a comprehensive set of tools for creating immersive environments and interactions.
+- C# Scripts: Used for game logic, event handling, and controlling in-game behavior, leveraging Unity's powerful scripting API.
+- XR Plug-in Management Extension: Enables Oculus support, specifically for the Meta Quest 2, allowing the game to run smoothly on this popular VR headset.
+
 ## How to Play
 - **Start Learning**: Choose a subject to begin. BooLingo covers a variety of topics from languages to science.
 - **Interact**: Use your voice to answer questions prompted by the VR environment.
