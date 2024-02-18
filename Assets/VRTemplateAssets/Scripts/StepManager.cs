@@ -137,7 +137,7 @@ namespace Unity.VRTemplate
 
         private List<Question> frenchToEnglishQuestions = new List<Question>
         {
-            new Question("What is \"baguette\" in English?", new List<string>{"Breadstick", "Wand", "French stick"}, 2),
+            new Question("What is \"baguette\" in English?", new List<string>{"Breadstick", "Wand", "French stick"}, 0),
             new Question("How do you say \"fromage\" in English?", new List<string>{"Cheese", "Wine", "Cake"}, 0),
             new Question("What is \"escargot\" in English?", new List<string>{"Snail", "Fast food", "Seafood"}, 0),
             new Question("How do you translate \"lunettes\" into English?", new List<string>{"Glasses", "Moon boots", "Windows"}, 0),
