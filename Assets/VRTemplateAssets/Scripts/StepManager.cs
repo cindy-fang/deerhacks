@@ -135,17 +135,28 @@ namespace Unity.VRTemplate
             new Question("Comment dit-on \"Goodbye\" en français?", new List<string>{"Au revoir", "Bonjour", "Bonne nuit"}, 0)
         };
 
+        private List<Question> deerQuestions = new List<Question>
+        {
+            new Question("A group of deer is known as?", new List<string>{"Pack", "Herd", "Flock"}, 1),
+            new Question("A baby deer is called?", new List<string>{"Cub", "Fawn", "Pup"}, 1),
+            new Question("Deer's natural predator?", new List<string>{"Lion", "Wolf", "Eagle"}, 1),
+            new Question("Deer's antlers are made of?", new List<string>{"Bone", "Cartilage", "Keratin"}, 0),
+            new Question("Deer's main defensive tactic?", new List<string>{"Camouflage", "Speed", "Aggression"}, 1),
+            new Question("Deer's seasonal behavior change?", new List<string>{"Migration", "Hibernation", "Molting"}, 0),
+            new Question("Deer communicate through?", new List<string>{"Dance", "Scent", "Song"}, 1),
+        };
+
         private List<Question> canadaQuestions = new List<Question>
-{
-    new Question("What is Canada's national animal?", new List<string>{"Beaver", "Moose", "Penguin"}, 0),
-    new Question("What do Canadians say after every sentence?", new List<string>{"Eh", "Uh", "Oh"}, 0),
-    new Question("Which sport is considered Canada's national pastime?", new List<string>{"Hockey", "Curling", "Snowboarding"}, 0),
-    new Question("What is the iconic Canadian coffee shop?", new List<string>{"Tim Hortons", "Starbucks", "Dunkin' Donuts"}, 0),
-    new Question("What is a popular Canadian dish featuring fries, cheese curds, and gravy?", new List<string>{"Poutine", "Nachos", "Pizza"}, 0),
-    new Question("What is Canada's most famous mountainous national park?", new List<string>{"Banff", "Yellowstone", "Yosemite"}, 0),
-    new Question("What do Canadians use to apologize?", new List<string>{"Sorry", "Excuse Me", "Pardon"}, 0),
-    new Question("What iconic leaf is on the Canadian flag?", new List<string>{"Maple Leaf", "Oak Leaf", "Pine Leaf"}, 0)
-};
+        {
+            new Question("What is Canada's national animal?", new List<string>{"Beaver", "Moose", "Penguin"}, 0),
+            new Question("What do Canadians say after every sentence?", new List<string>{"Eh", "Uh", "Oh"}, 0),
+            new Question("Which sport is considered Canada's national pastime?", new List<string>{"Hockey", "Curling", "Snowboarding"}, 0),
+            new Question("What is the iconic Canadian coffee shop?", new List<string>{"Tim Hortons", "Starbucks", "Dunkin' Donuts"}, 0),
+            new Question("What is a popular Canadian dish featuring fries, cheese curds, and gravy?", new List<string>{"Poutine", "Nachos", "Pizza"}, 0),
+            new Question("What is Canada's most famous mountainous national park?", new List<string>{"Banff", "Yellowstone", "Yosemite"}, 0),
+            new Question("What do Canadians use to apologize?", new List<string>{"Sorry", "Excuse Me", "Pardon"}, 0),
+            new Question("What iconic leaf is on the Canadian flag?", new List<string>{"Maple Leaf", "Oak Leaf", "Pine Leaf"}, 0)
+        };
 
 
         private List<Question> frenchToEnglishQuestions = new List<Question>
@@ -260,7 +271,7 @@ namespace Unity.VRTemplate
             if (currentDropdown != null)
             {
                 currentDropdown.ClearOptions();
-                currentDropdown.AddOptions(new List<string> { "French", "Math", "Programming", "French #2", "Science", "Canadian Things" });
+                currentDropdown.AddOptions(new List<string> { "French", "Math", "Programming", "Deer Facts", "Science", "Canadian Knowledge" });
             }
 
             
@@ -368,7 +379,7 @@ namespace Unity.VRTemplate
                 switch (selectedAnswerIndex)
                 {
                     case 0:
-                        questions = frenchQuestions;
+                        questions = frenchToEnglishQuestions;
                         break;
                     case 1:
                         questions = (mathQuestions);
@@ -377,8 +388,7 @@ namespace Unity.VRTemplate
                         questions = (programmingQuestions);
                         break;
                     case 3:
-                        questions = frenchToEnglishQuestions;
-                        pronunciationSet = true;
+                        questions = deerQuestions;
                         break;
                     case 4:
                         questions = scienceQuestions;
@@ -406,7 +416,7 @@ namespace Unity.VRTemplate
                 Question currentQuestion = questions[m_CurrentStepIndex];
 
                 // Check if the selected answer is correct
-                string correctAnswer = currentQuestion.answers[0].ToLower();
+                string correctAnswer = currentQuestion.answers[currentQuestion.correctAnswerIndex].ToLower();
 
                 bool isCorrect = selectedAnswer == correctAnswer;
 
@@ -439,7 +449,7 @@ namespace Unity.VRTemplate
                     if (controlledObjectTransform != null)
                     {
                         // Move the object -1 unit in the x-axis
-                        UpdateBirdPositions(controlledObjectTransform.position + new Vector3(1.5f * (numberOfWrongAnswers + 1), 0, 0));
+                        UpdateBirdPositions(controlledObjectTransform.position + new Vector3(1, 0, 0));
                     }
                     else
                     {
