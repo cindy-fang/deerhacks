@@ -54,6 +54,8 @@ namespace Unity.VRTemplate
 
         [SerializeField]
         Transform controlledObjectTransform;
+        [SerializeField]
+        GameObject jumpscareObject;
 
         public AudioSource audioSource;
         public AudioSource bgmAudioSource;
@@ -224,6 +226,7 @@ namespace Unity.VRTemplate
 
         void Start()
         {
+            jumpscareObject.SetActive(false);
             gameEnd = false;
             gameEndExecuted = false;
             m_CurrentStepIndex = 0;
@@ -306,7 +309,8 @@ namespace Unity.VRTemplate
 
                 PlayBGM(jumpscareSound);
                 // program specific bird to appear
-                UpdateBirdPositions(new Vector3(1f, -3f, 0.7f)); // Assuming this method correctly positions the bird
+                jumpscareObject.SetActive(true);
+                // UpdateBirdPositions(new Vector3(1f, -3f, 0.7f)); // Assuming this method correctly positions the bird
             }
         }
 
@@ -315,11 +319,11 @@ namespace Unity.VRTemplate
             // Move the object continuously along the X-axis if game hasn't ended
             if (controlledObjectTransform != null && !gameEnd && startGameClicked)
             {
-                controlledObjectTransform.position += new Vector3((numberOfWrongAnswers + 1) * moveSpeed * Time.deltaTime, 0, 0);
+                controlledObjectTransform.position += new Vector3(moveSpeed * Time.deltaTime, 0, 0);
             }
 
             // Check if game should end
-            if ((controlledObjectTransform.position.x < 4) && !gameEnd)
+            if ((controlledObjectTransform.position.x < 0) && !gameEnd)
             {
                 gameEnd = true;
                 playerSurvived = false;
@@ -407,8 +411,7 @@ namespace Unity.VRTemplate
                 {
                     PlaySound(correctAnswerSound);
 
-                    answerResultText.text = correctAnswersThreats[numberOfCorrectAnswers] + " - Duolingo :)";
-                    TextToSpeech(correctAnswersThreats[numberOfCorrectAnswers]);
+                    answerResultText.text = correctAnswersThreats[numberOfCorrectAnswers % correctAnswersThreats.Count] + " - Duolingo :)";
                     PlayThreat(correctAnswerAudio[numberOfCorrectAnswers % correctAnswerAudio.Count]);
                     numberOfCorrectAnswers += 1;
 
@@ -454,8 +457,7 @@ namespace Unity.VRTemplate
                 {
                     PlaySound(wrongAnswerSound);
 
-                    answerResultText.text = incorrectAnswersThreats[numberOfWrongAnswers] + " - Duolingo :)";
-                    TextToSpeech(incorrectAnswersThreats[numberOfWrongAnswers]);
+                    answerResultText.text = incorrectAnswersThreats[numberOfWrongAnswers % incorrectAnswerAudio.Count] + " - Duolingo :)";
                     PlayThreat(incorrectAnswerAudio[numberOfWrongAnswers % incorrectAnswerAudio.Count]);
 
                     numberOfWrongAnswers += 1;
@@ -473,13 +475,6 @@ namespace Unity.VRTemplate
                         Debug.LogError("Controlled Object Transform is not assigned.");
                     }
                 }
-                if (controlledObjectTransform.position.x < -6)
-                {
-                    gameEnd = true;
-                    GameEnd();
-                }
-
-
             }
             else
             {
