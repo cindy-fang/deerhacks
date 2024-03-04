@@ -271,7 +271,7 @@ namespace Unity.VRTemplate
             if (currentDropdown != null)
             {
                 currentDropdown.ClearOptions();
-                currentDropdown.AddOptions(new List<string> { "French", "Math", "Programming", "Deer Facts", "Science", "Canadian Knowledge" });
+                currentDropdown.AddOptions(new List<string> { "Oui Oui Baguette Basics (French)", "Your younger sister's math homework", "Why won't you compile (CS)", "Deer(Hacks) Facts", "Mitochondria Things (Science)", "Aboot & Maple Syrup Knowledge" });
             }
 
             
